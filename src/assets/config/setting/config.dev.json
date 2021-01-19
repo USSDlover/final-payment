@@ -1,0 +1,9 @@
+{
+  "env": {
+    "name": "DEV"
+  },
+  "apiServer": {
+    "base": "http://localhost:3000",
+    "meta": "/api/v1"
+  }
+}
