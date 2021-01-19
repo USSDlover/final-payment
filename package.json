@@ -1,5 +1,5 @@
 {
-  "name": "final-payment",
+  "name": "card-store",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
