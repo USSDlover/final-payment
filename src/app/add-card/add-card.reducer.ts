@@ -6,10 +6,7 @@ export const initialState: CreditCardInterface[] = [];
 
 const _addCardReducer = createReducer(
   initialState,
-  on(add, (state, { card } ) => {
-    state.push(card);
-    return state;
-  }),
+  on(add, (state, { card } ) => [...state, card]),
 );
 
 export function addCardReducer(state, action): any[] {
