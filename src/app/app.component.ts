@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Observable} from 'rxjs';
+import {CreditCardInterface} from './shared/interfaces';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'card-store';
+  cards$: Observable<CreditCardInterface[]>;
+
+  constructor(private store: Store<{ cards: CreditCardInterface[] }>) {
+    this.cards$ = store.select('cards');
+  }
 }

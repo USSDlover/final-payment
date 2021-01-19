@@ -1,27 +1,25 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CreditCardInterface} from '../shared/interfaces/';
-import {CardService} from '../shared/services';
 import {CreditCardModel} from '../shared/models';
+import {CardService} from './card.service';
 
 @Component({
-  selector: 'app-add-card',
+  selector: 'cs-add-card',
   templateUrl: './add-card.component.html',
-  styleUrls: ['./add-card.component.scss']
+  styleUrls: ['./add-card.component.scss'],
+  providers: [CardService]
 })
 export class AddCardComponent implements OnInit {
-  @Input() card: CreditCardInterface;
-
   addCardForm: FormGroup;
 
   constructor(private cardService: CardService) {
   }
 
   ngOnInit(): void {
-    this.initForm(this.card);
+    this.initForm();
   }
 
-  onSubmit(): void {
+  onSubmit(): boolean {
     const createdCard = new CreditCardModel(
       this.addCardForm.get('cardNumber').value,
       this.addCardForm.get('holder').value,
@@ -31,15 +29,17 @@ export class AddCardComponent implements OnInit {
     );
 
     this.cardService.addNewCard(createdCard);
+
+    return false;
   }
 
-  private initForm(card: CreditCardInterface): void {
+  private initForm(): void {
     this.addCardForm = new FormGroup({
-      cardNumber: new FormControl(card?.cardNumber ?? null, [Validators.required]),
-      holder: new FormControl(card?.holder ?? null, [Validators.required]),
-      expirationDate: new FormControl(card?.expirationDate ?? null, [Validators.required]),
-      ccv: new FormControl(card?.ccv ?? null, [Validators.minLength(3), Validators.maxLength(3)]),
-      amount: new FormControl(card?.amount ?? null, [Validators.required])
+      cardNumber: new FormControl(null, [Validators.required]),
+      holder: new FormControl(null, [Validators.required]),
+      expirationDate: new FormControl(null, [Validators.required]),
+      ccv: new FormControl(null, [Validators.minLength(3), Validators.maxLength(3)]),
+      amount: new FormControl(null, [Validators.required])
     });
   }
 

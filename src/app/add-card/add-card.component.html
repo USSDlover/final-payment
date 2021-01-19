@@ -1,1 +1,27 @@
-<p>add-card works!</p>
+<form (ngSubmit)="onSubmit()" [formGroup]="addCardForm">
+  <div>
+    <div>
+      <label for="cardNumber">Card Number</label>
+      <input id="cardNumber" type="text" formControlName="cardNumber">
+    </div>
+    <div>
+      <label for="holder">Card Number</label>
+      <input id="holder" type="text" formControlName="holder">
+    </div>
+    <div>
+      <label for="expirationDate">Card Number</label>
+      <input id="expirationDate" type="date" formControlName="expirationDate">
+    </div>
+    <div>
+      <label for="ccv">Card Number</label>
+      <input id="ccv" type="text" formControlName="ccv">
+    </div>
+    <div>
+      <label for="amount">Card Number</label>
+      <input id="amount" type="text" formControlName="amount">
+    </div>
+    <button type="submit">
+      Submit
+    </button>
+  </div>
+</form>

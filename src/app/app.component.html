@@ -1,1 +1,6 @@
-<router-outlet></router-outlet>
+<button routerLink="/add-card">Add new card</button>
+
+<div *ngFor="let card of cards$ | async">
+  <cs-credit-card [creditCard]="card">
+  </cs-credit-card>
+</div>
