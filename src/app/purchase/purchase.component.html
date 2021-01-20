@@ -1,29 +1,37 @@
-<button routerLink="/">Back</button>
-
-<form (ngSubmit)="onSubmit()" [formGroup]="purchaseForm">
-  <div>
-    <div>
-      <label for="cardNumber">Card Number</label>
-      <input id="cardNumber" type="number" formControlName="cardNumber">
-    </div>
-    <div>
-      <label for="holder">Holder</label>
-      <input id="holder" type="text" formControlName="holder">
-    </div>
-    <div>
-      <label for="expirationDate">Expiration Date</label>
-      <input id="expirationDate" type="date" [min]="minDate" formControlName="expirationDate">
-    </div>
-    <div>
-      <label for="ccv">CCV</label>
-      <input id="ccv" type="number" placeholder="Optional" [maxLength]="3" [minlength]="3" formControlName="ccv">
-    </div>
-    <div>
-      <label for="amount">Amount</label>
-      <input id="amount" type="number" formControlName="amount">
-    </div>
-    <button type="submit">
-      Submit
-    </button>
+<div class="container">
+  <div class="form-group">
+    <form (ngSubmit)="onSubmit()" [formGroup]="purchaseForm">
+      <mat-form-field class="form-control">
+        <mat-label>Card Number</mat-label>
+        <label><input matInput type="number" formControlName="cardNumber"></label>
+        <mat-error>Card number is required, length should be 16 character</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label>Card Holder</mat-label>
+        <label><input matInput type="text" formControlName="holder"></label>
+        <mat-error>Card holder name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label>Expiration Date</mat-label>
+        <label><input matInput type="date" formControlName="expirationDate"></label>
+        <mat-error>Selected date is not valid</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label>CCV</mat-label>
+        <label><input matInput type="number" placeholder="Optional" formControlName="ccv"></label>
+        <mat-error>Only 3digit allowed</mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-control">
+        <mat-label>Amount</mat-label>
+        <label><input matInput type="number" formControlName="amount"></label>
+        <mat-error>Min entered amount is 0</mat-error>
+      </mat-form-field>
+      <div class="btn-container">
+        <button mat-raised-button color="primary" type="submit">
+          Submit
+        </button>
+        <button mat-raised-button color="warn" routerLink="/">Cancel</button>
+      </div>
+    </form>
   </div>
-</form>
+</div>

@@ -1,4 +1,6 @@
-<button routerLink="/purchase">Complete the purchase</button>
+<mat-toolbar color="primary" class="mat-elevation-z1">
+  <button mat-flat-button color="primary" routerLink="/purchase">Complete the purchase</button>
+</mat-toolbar>
 
 <div *ngFor="let card of cards$ | async">
   <cs-credit-card [creditCard]="card">

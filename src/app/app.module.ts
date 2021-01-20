@@ -8,6 +8,7 @@ import {CoreModule} from './core/core.module';
 import {storeCardReducer} from './purchase/store/store-card.reducer';
 import {SharedModule} from './shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     CoreModule.forRoot(),
     StoreModule.forRoot({ cards: storeCardReducer }),
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

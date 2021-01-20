@@ -37,8 +37,8 @@ export class PurchaseComponent implements OnInit, OnDestroy {
       this.purchaseForm.get('cardNumber').value,
       this.purchaseForm.get('holder').value,
       this.purchaseForm.get('expirationDate').value,
-      this.purchaseForm.get('ccv').value,
       this.purchaseForm.get('amount').value,
+      this.purchaseForm.get('ccv').value,
     );
 
     this._purchaseSub = this._cardService.addNewCard(createdCard)

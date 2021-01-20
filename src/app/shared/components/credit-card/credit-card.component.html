@@ -1,3 +1,17 @@
-<div>
-  {{creditCard.cardNumber}}
-</div>
+<mat-card>
+  <mat-card-title>
+    {{creditCard.holder}}
+  </mat-card-title>
+  <mat-card-subtitle>
+    {{creditCard.cardNumber | cardNumber}}
+  </mat-card-subtitle>
+  <mat-card-subtitle>
+    Expiration Date: {{creditCard.expirationDate | date: 'MM/YYYY'}}
+  </mat-card-subtitle>
+  <mat-card-subtitle *ngIf="creditCard.ccv">
+    CCV: {{creditCard.ccv}}
+  </mat-card-subtitle>
+  <mat-card-subtitle>
+    Amount: {{creditCard.amount | currency: 'USD'}}
+  </mat-card-subtitle>
+</mat-card>
