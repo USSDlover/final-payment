@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'cs-toast',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent implements OnInit {
+  @Input() message: string;
 
   constructor() { }
 

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {AppConfigService} from './app-config.service';
@@ -17,14 +17,16 @@ export class ApiService {
       .pipe(catchError((err => this.handleError(err))));
   }
 
-  makePostApiCall<T>(endPoint: string, body: any): Observable<T> {
-    return this.http
+  makePostApiCall<T>(endPoint: string, body: any): Observable<T | boolean> {
+    return of(true);
+
+    /*return this.http
       .post<T>(`${this.apiServer}/${endPoint}`, body)
-      .pipe(catchError((err => this.handleError(err))));
+      .pipe(catchError((err => this.handleError(err))));*/
   }
 
   private handleError(err): Observable<any> {
     console.log('Error occur while tried to make http request', err);
-    return of({ status: false, message: err.message });
+    return of({status: false, message: err.message});
   }
 }

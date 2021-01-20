@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CreditCardModel} from '../shared/models';
 import {CardService} from './card.service';
+import {ToastService} from '../shared/services';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'cs-add-card',
@@ -9,14 +11,24 @@ import {CardService} from './card.service';
   styleUrls: ['./add-card.component.scss'],
   providers: [CardService]
 })
-export class AddCardComponent implements OnInit {
+export class AddCardComponent implements OnInit, OnDestroy {
   addCardForm: FormGroup;
+  private _purchaseSub: Subscription;
 
-  constructor(private cardService: CardService) {
+  constructor(
+    private _cardService: CardService,
+    private _toastService: ToastService
+  ) {
   }
 
   ngOnInit(): void {
-    this.initForm();
+    this._initForm();
+  }
+
+  ngOnDestroy(): void {
+    if (this._purchaseSub) {
+      this._purchaseSub.unsubscribe();
+    }
   }
 
   onSubmit(): boolean {
@@ -28,12 +40,17 @@ export class AddCardComponent implements OnInit {
       this.addCardForm.get('amount').value,
     );
 
-    this.cardService.addNewCard(createdCard);
+    this._purchaseSub = this._cardService.addNewCard(createdCard)
+      .subscribe(res => {
+        if (res) {
+          this._toastService.open('Purchase successfully done', 3000);
+        }
+      });
 
     return false;
   }
 
-  private initForm(): void {
+  private _initForm(): void {
     this.addCardForm = new FormGroup({
       cardNumber: new FormControl(null, [Validators.required]),
       holder: new FormControl(null, [Validators.required]),
