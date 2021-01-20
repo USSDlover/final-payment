@@ -1,6 +1,6 @@
-import { CreditCardInterface } from '../interfaces';
+import { PurchaseInterface } from '../interfaces';
 
-export class CreditCardModel implements CreditCardInterface {
+export class PurchaseModel implements PurchaseInterface {
   constructor(
     public cardNumber: string,
     public holder: string,

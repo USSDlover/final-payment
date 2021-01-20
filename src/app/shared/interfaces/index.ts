@@ -1,1 +1,1 @@
-export * from './credit-card.interface';
+export * from './purchase.interface';

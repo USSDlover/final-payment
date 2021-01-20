@@ -1,7 +1,7 @@
 import {createAction, props} from '@ngrx/store';
-import {CreditCardInterface} from '../shared/interfaces';
+import {PurchaseInterface} from '../../shared/interfaces';
 
 export const add = createAction(
   '[Store Card] Add',
-  props<{ card: CreditCardInterface }>()
+  props<{ card: PurchaseInterface }>()
 );

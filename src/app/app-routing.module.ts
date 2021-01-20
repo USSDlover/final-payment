@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {AddCardComponent} from './add-card/add-card.component';
+import {PurchaseComponent} from './purchase/purchase.component';
 
 const routes: Routes = [
-  { path: 'add-card', component: AddCardComponent}
+  { path: 'purchase', component: PurchaseComponent}
 ];
 
 @NgModule({
@@ -13,5 +13,5 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 export const RoutedComponents = [
-  AddCardComponent
+  PurchaseComponent
 ];

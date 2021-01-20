@@ -1,6 +1,6 @@
 {
   "name": "card-store",
-  "version": "0.7.7",
+  "version": "0.7.25",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

@@ -1,22 +1,22 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {CreditCardModel} from '../shared/models';
-import {CardService} from './card.service';
+import {PurchaseModel} from '../shared/models';
+import {PurchaseService} from './purchase.service';
 import {ToastService} from '../shared/services';
 import {Subscription} from 'rxjs';
 
 @Component({
-  selector: 'cs-add-card',
-  templateUrl: './add-card.component.html',
-  styleUrls: ['./add-card.component.scss'],
-  providers: [CardService]
+  selector: 'cs-purchase',
+  templateUrl: './purchase.component.html',
+  styleUrls: ['./purchase.component.scss'],
+  providers: [PurchaseService]
 })
-export class AddCardComponent implements OnInit, OnDestroy {
-  addCardForm: FormGroup;
+export class PurchaseComponent implements OnInit, OnDestroy {
+  purchaseForm: FormGroup;
   private _purchaseSub: Subscription;
 
   constructor(
-    private _cardService: CardService,
+    private _cardService: PurchaseService,
     private _toastService: ToastService
   ) {
   }
@@ -32,12 +32,12 @@ export class AddCardComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): boolean {
-    const createdCard = new CreditCardModel(
-      this.addCardForm.get('cardNumber').value,
-      this.addCardForm.get('holder').value,
-      this.addCardForm.get('expirationDate').value,
-      this.addCardForm.get('ccv').value,
-      this.addCardForm.get('amount').value,
+    const createdCard = new PurchaseModel(
+      this.purchaseForm.get('cardNumber').value,
+      this.purchaseForm.get('holder').value,
+      this.purchaseForm.get('expirationDate').value,
+      this.purchaseForm.get('ccv').value,
+      this.purchaseForm.get('amount').value,
     );
 
     this._purchaseSub = this._cardService.addNewCard(createdCard)
@@ -51,7 +51,7 @@ export class AddCardComponent implements OnInit, OnDestroy {
   }
 
   private _initForm(): void {
-    this.addCardForm = new FormGroup({
+    this.purchaseForm = new FormGroup({
       cardNumber: new FormControl(null, [Validators.required]),
       holder: new FormControl(null, [Validators.required]),
       expirationDate: new FormControl(null, [Validators.required]),

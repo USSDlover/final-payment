@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CreditCardInterface} from '../../interfaces';
+import {PurchaseInterface} from '../../interfaces';
 
 @Component({
   selector: 'cs-credit-card',
@@ -7,7 +7,7 @@ import {CreditCardInterface} from '../../interfaces';
   styleUrls: ['./credit-card.component.scss']
 })
 export class CreditCardComponent implements OnInit {
-  @Input() creditCard: CreditCardInterface;
+  @Input() creditCard: PurchaseInterface;
 
   constructor() { }
 

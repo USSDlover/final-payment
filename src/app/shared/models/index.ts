@@ -1,1 +1,1 @@
-export * from './credit-card.model';
+export * from './purchase.model';

@@ -1,4 +1,4 @@
-export interface CreditCardInterface {
+export interface PurchaseInterface {
   cardNumber: string;
   holder: string;
   expirationDate: Date;

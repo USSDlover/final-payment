@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
-import {CreditCardInterface} from './shared/interfaces';
+import {PurchaseInterface} from './shared/interfaces';
 import {Store} from '@ngrx/store';
 
 @Component({
@@ -9,9 +9,9 @@ import {Store} from '@ngrx/store';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  cards$: Observable<CreditCardInterface[]>;
+  cards$: Observable<PurchaseInterface[]>;
 
-  constructor(private store: Store<{ cards: CreditCardInterface[] }>) {
+  constructor(private store: Store<{ cards: PurchaseInterface[] }>) {
     this.cards$ = store.select('cards');
   }
 }

@@ -5,21 +5,21 @@ import {AppRoutingModule, RoutedComponents} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import {CoreModule} from './core/core.module';
-import {addCardReducer} from './add-card/add-card.reducer';
+import {storeCardReducer} from './purchase/store/store-card.reducer';
 import {SharedModule} from './shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RoutedComponents
+    ...RoutedComponents
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     CoreModule.forRoot(),
-    StoreModule.forRoot({ cards: addCardReducer }),
+    StoreModule.forRoot({ cards: storeCardReducer }),
     SharedModule
   ],
   providers: [],
