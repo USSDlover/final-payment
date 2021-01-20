@@ -4,7 +4,7 @@
   <div>
     <div>
       <label for="cardNumber">Card Number</label>
-      <input id="cardNumber" type="text" formControlName="cardNumber">
+      <input id="cardNumber" type="number" formControlName="cardNumber">
     </div>
     <div>
       <label for="holder">Holder</label>
@@ -12,15 +12,15 @@
     </div>
     <div>
       <label for="expirationDate">Expiration Date</label>
-      <input id="expirationDate" type="date" formControlName="expirationDate">
+      <input id="expirationDate" type="date" [min]="minDate" formControlName="expirationDate">
     </div>
     <div>
       <label for="ccv">CCV</label>
-      <input id="ccv" type="text" formControlName="ccv">
+      <input id="ccv" type="number" placeholder="Optional" [maxLength]="3" [minlength]="3" formControlName="ccv">
     </div>
     <div>
       <label for="amount">Amount</label>
-      <input id="amount" type="text" formControlName="amount">
+      <input id="amount" type="number" formControlName="amount">
     </div>
     <button type="submit">
       Submit

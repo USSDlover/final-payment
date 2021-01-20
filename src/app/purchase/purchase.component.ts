@@ -13,6 +13,7 @@ import {Subscription} from 'rxjs';
 })
 export class PurchaseComponent implements OnInit, OnDestroy {
   purchaseForm: FormGroup;
+  minDate = new Date();
   private _purchaseSub: Subscription;
 
   constructor(
