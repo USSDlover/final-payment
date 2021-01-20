@@ -53,11 +53,11 @@ export class PurchaseComponent implements OnInit, OnDestroy {
 
   private _initForm(): void {
     this.purchaseForm = new FormGroup({
-      cardNumber: new FormControl(null, [Validators.required]),
+      cardNumber: new FormControl(null, [Validators.required, Validators.minLength(16), Validators.maxLength(16)]),
       holder: new FormControl(null, [Validators.required]),
-      expirationDate: new FormControl(null, [Validators.required]),
+      expirationDate: new FormControl(null, [Validators.required, Validators.min(this.minDate.getDate())]),
       ccv: new FormControl(null, [Validators.minLength(3), Validators.maxLength(3)]),
-      amount: new FormControl(null, [Validators.required])
+      amount: new FormControl(null, [Validators.required, Validators.min(0)])
     });
   }
 

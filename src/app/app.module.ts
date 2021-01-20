@@ -9,11 +9,19 @@ import {storeCardReducer} from './purchase/store/store-card.reducer';
 import {SharedModule} from './shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CardNumberDirective } from './purchase/directives/card-number.directive';
+import { ExpirationDateDirective } from './purchase/directives/expiration-date.directive';
+import { CcvDirective } from './purchase/directives/ccv.directive';
+import { AmountDirective } from './purchase/directives/amount.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ...RoutedComponents
+    ...RoutedComponents,
+    CardNumberDirective,
+    ExpirationDateDirective,
+    CcvDirective,
+    AmountDirective
   ],
   imports: [
     BrowserModule,
