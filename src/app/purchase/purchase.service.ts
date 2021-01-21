@@ -14,7 +14,7 @@ export class PurchaseService {
   ) {
   }
 
-  addNewCard(newPurchase: PurchaseInterface): Observable<boolean> {
+  sendPurchaseRequest(newPurchase: PurchaseInterface): Observable<boolean> {
     return this._api.makePostApiCall<boolean>('/purchase', newPurchase)
       .pipe(tap(res => {
         if (res) {

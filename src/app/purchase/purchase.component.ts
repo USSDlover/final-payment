@@ -52,7 +52,7 @@ export class PurchaseComponent implements OnInit, OnDestroy {
   }
 
   private _savePurchaseData(data: PurchaseModel): void {
-    this._purchaseSub = this._purchaseService.addNewCard(data)
+    this._purchaseSub = this._purchaseService.sendPurchaseRequest(data)
       .subscribe({
         next: res => {
           if (res) {
