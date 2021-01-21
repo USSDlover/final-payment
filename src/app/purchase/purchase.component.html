@@ -3,28 +3,36 @@
     <form (ngSubmit)="onSubmit()" [formGroup]="purchaseForm">
       <mat-form-field class="form-control">
         <mat-label>Card Number</mat-label>
-        <label><input matInput type="number" formControlName="cardNumber"></label>
-        <mat-error>Card number is required, length should be 16 character</mat-error>
+        <label><input matInput type="text" [formControl]="cardNumber"></label>
+        <mat-error *ngIf="cardNumber.hasError('required')">Card number is required</mat-error>
+        <mat-error *ngIf="cardNumber.hasError('minlength')">Should be 16 characters</mat-error>
+        <mat-error *ngIf="cardNumber.hasError('maxlength')">Can't be more than 16 characters</mat-error>
+        <mat-error *ngIf="cardNumber.hasError('pattern')">Only numbers allowed</mat-error>
       </mat-form-field>
       <mat-form-field class="form-control">
         <mat-label>Card Holder</mat-label>
-        <label><input matInput type="text" formControlName="holder"></label>
-        <mat-error>Card holder name is required</mat-error>
+        <label><input matInput type="text" [formControl]="holder"></label>
+        <mat-error *ngIf="holder.hasError('required')">Card holder name is required</mat-error>
+        <mat-error *ngIf="holder.hasError('minlength')">Should be at least 6 characters</mat-error>
       </mat-form-field>
       <mat-form-field class="form-control">
         <mat-label>Expiration Date</mat-label>
-        <label><input matInput type="date" formControlName="expirationDate"></label>
-        <mat-error>Selected date is not valid</mat-error>
+        <label><input matInput type="date" (ngModelChange)="validateSelectedDate($event)" [formControl]="expirationDate"></label>
+        <mat-error *ngIf="expirationDate.hasError('required')">Expiration date is required</mat-error>
+        <mat-error *ngIf="!expirationDate.hasError('required')">Selected date is invalid</mat-error>
       </mat-form-field>
       <mat-form-field class="form-control">
         <mat-label>CCV</mat-label>
-        <label><input matInput type="number" placeholder="Optional" formControlName="ccv"></label>
-        <mat-error>Only 3digit allowed</mat-error>
+        <label><input matInput type="text" placeholder="Optional" [formControl]="ccv"></label>
+        <mat-error *ngIf="!ccv.hasError('pattern')">Only 3 digits allowed</mat-error>
+        <mat-error *ngIf="ccv.hasError('pattern')">Only numbers allowed</mat-error>
       </mat-form-field>
       <mat-form-field class="form-control">
         <mat-label>Amount</mat-label>
-        <label><input matInput type="number" formControlName="amount"></label>
-        <mat-error>Min entered amount is 0</mat-error>
+        <label><input matInput type="text" [formControl]="amount"></label>
+        <mat-error *ngIf="amount.hasError('min')">Can't be less than 0</mat-error>
+        <mat-error *ngIf="amount.hasError('required')">Amount is required</mat-error>
+        <mat-error *ngIf="amount.hasError('pattern')">Only numbers allowed</mat-error>
       </mat-form-field>
       <div class="btn-container">
         <button mat-raised-button color="primary" [disabled]="purchaseForm.invalid" type="submit">
