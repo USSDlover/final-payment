@@ -10,6 +10,7 @@ import {Store} from '@ngrx/store';
 })
 export class AppComponent {
   purchases$: Observable<PurchaseInterface[]>;
+  btnTxt = 'Complete the purchase';
 
   constructor(private _store: Store<{ purchases: PurchaseInterface[] }>) {
     this.purchases$ = _store.select('purchases');
