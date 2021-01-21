@@ -9,9 +9,9 @@ import {Store} from '@ngrx/store';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  cards$: Observable<PurchaseInterface[]>;
+  purchases$: Observable<PurchaseInterface[]>;
 
-  constructor(private _store: Store<{ cards: PurchaseInterface[] }>) {
-    this.cards$ = _store.select('cards');
+  constructor(private _store: Store<{ purchases: PurchaseInterface[] }>) {
+    this.purchases$ = _store.select('purchases');
   }
 }

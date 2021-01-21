@@ -1,4 +1,4 @@
-import { PurchaseInterface } from '../interfaces';
+import {PurchaseInterface} from '../interfaces';
 
 export class PurchaseModel implements PurchaseInterface {
   constructor(
@@ -8,5 +8,15 @@ export class PurchaseModel implements PurchaseInterface {
     public amount: number,
     public ccv?: string
   ) {
+  }
+
+  static dummy(): PurchaseModel {
+    return new PurchaseModel(
+      '1234567898765432',
+      'Jon Done',
+      new Date(new Date().getDate() + 10000000),
+      20000,
+      '354'
+    );
   }
 }

@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-title>
+    {{purchase.holder}}
+  </mat-card-title>
+  <mat-card-subtitle>
+    {{purchase.cardNumber | cardNumber}}
+  </mat-card-subtitle>
+  <mat-card-subtitle>
+    Expiration Date: {{purchase.expirationDate | date: 'MM/YYYY'}}
+  </mat-card-subtitle>
+  <mat-card-subtitle *ngIf="purchase.ccv">
+    CCV: {{purchase.ccv}}
+  </mat-card-subtitle>
+  <mat-card-subtitle>
+    Amount: {{purchase.amount | currency: 'USD'}}
+  </mat-card-subtitle>
+</mat-card>

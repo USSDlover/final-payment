@@ -2,9 +2,9 @@
   <button mat-flat-button color="primary" routerLink="/purchase">Complete the purchase</button>
 </mat-toolbar>
 
-<div *ngFor="let card of cards$ | async">
-  <cs-credit-card [creditCard]="card">
-  </cs-credit-card>
+<div *ngFor="let purchase of purchases$ | async">
+  <fp-purchase-card [purchase]="purchase">
+  </fp-purchase-card>
 </div>
 
 <router-outlet></router-outlet>

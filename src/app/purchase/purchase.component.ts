@@ -8,7 +8,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'cs-purchase',
   templateUrl: './purchase.component.html',
-  styleUrls: ['./purchase.component.scss']
+  styleUrls: ['./purchase.component.scss'],
+  providers: [PurchaseService]
 })
 export class PurchaseComponent implements OnInit, OnDestroy {
   purchaseForm: FormGroup;

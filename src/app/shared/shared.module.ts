@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CreditCardComponent} from './components';
+import {PurchaseCardComponent} from './components';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
@@ -10,7 +10,7 @@ import {CardNumberPipe} from './pipes';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const components = [
-  CreditCardComponent
+  PurchaseCardComponent
 ];
 
 const pipes = [

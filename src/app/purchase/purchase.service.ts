@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ApiService} from '../core/services';
 import {PurchaseInterface} from '../shared/interfaces';
 import {Store} from '@ngrx/store';
-import {add} from './store/store-card.actions';
+import {add} from './store/store-purchase.actions';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
@@ -14,16 +14,16 @@ export class PurchaseService {
   ) {
   }
 
-  addNewCard(newCard: PurchaseInterface): Observable<boolean> {
-    return this._api.makePostApiCall<boolean>('/purchase', newCard)
+  addNewCard(newPurchase: PurchaseInterface): Observable<boolean> {
+    return this._api.makePostApiCall<boolean>('/purchase', newPurchase)
       .pipe(tap(res => {
         if (res) {
-          this._addToStore(newCard);
+          this._addToStore(newPurchase);
         }
       }));
   }
 
-  private _addToStore(card: PurchaseInterface): void {
-    this._store.dispatch(add({ card }));
+  private _addToStore(purchase: PurchaseInterface): void {
+    this._store.dispatch(add({ purchase }));
   }
 }
