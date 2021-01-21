@@ -7,13 +7,13 @@ import {AppConfigInterface} from '../interfaces';
 export class AppConfigService {
   static settings: AppConfigInterface;
 
-  constructor(private http: HttpClient) {
+  constructor(private _http: HttpClient) {
   }
 
   load(): Promise<AppConfigInterface> {
     const jsonFile = `assets/config/setting/config.${environment.production ? 'prod' : 'dev'}.json`;
     return new Promise<AppConfigInterface>((resolve, reject) => {
-      this.http.get(jsonFile).toPromise().then((response: AppConfigInterface) => {
+      this._http.get(jsonFile).toPromise().then((response: AppConfigInterface) => {
         AppConfigService.settings = (response as AppConfigInterface);
         resolve();
       }).catch((response: any) => {

@@ -11,7 +11,7 @@ import {Store} from '@ngrx/store';
 export class AppComponent {
   cards$: Observable<PurchaseInterface[]>;
 
-  constructor(private store: Store<{ cards: PurchaseInterface[] }>) {
-    this.cards$ = store.select('cards');
+  constructor(private _store: Store<{ cards: PurchaseInterface[] }>) {
+    this.cards$ = _store.select('cards');
   }
 }

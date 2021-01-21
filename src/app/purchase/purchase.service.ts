@@ -9,21 +9,21 @@ import {tap} from 'rxjs/operators';
 @Injectable()
 export class PurchaseService {
   constructor(
-    private api: ApiService,
-    private store: Store<{ card: PurchaseInterface[] }>
+    private _api: ApiService,
+    private _store: Store<{ card: PurchaseInterface[] }>
   ) {
   }
 
   addNewCard(newCard: PurchaseInterface): Observable<boolean> {
-    return this.api.makePostApiCall<boolean>('/purchase', newCard)
+    return this._api.makePostApiCall<boolean>('/purchase', newCard)
       .pipe(tap(res => {
         if (res) {
-          this.addToStore(newCard);
+          this._addToStore(newCard);
         }
       }));
   }
 
-  addToStore(card: PurchaseInterface): void {
-    this.store.dispatch(add({ card }));
+  private _addToStore(card: PurchaseInterface): void {
+    this._store.dispatch(add({ card }));
   }
 }

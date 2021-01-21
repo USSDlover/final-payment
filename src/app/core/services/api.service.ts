@@ -8,25 +8,26 @@ import {AppConfigService} from './app-config.service';
 export class ApiService {
   protected apiServer = AppConfigService.settings.apiServer.base + AppConfigService.settings.apiServer.meta;
 
-  constructor(private http: HttpClient) {
+  constructor(private _http: HttpClient) {
+  }
+
+  private static _handleError(err): Observable<any> {
+    console.log('Error occur while tried to make http request', err);
+    return of({status: false, message: err.message});
   }
 
   makeGetApiCall<T>(endPoint: string, queryParams?: HttpParams): Observable<T> {
-    return this.http
+    return this._http
       .get<T>(`${this.apiServer}/${endPoint}`, {params: queryParams})
-      .pipe(catchError((err => this.handleError(err))));
+      .pipe(catchError((err => ApiService._handleError(err))));
   }
 
   makePostApiCall<T>(endPoint: string, body: any): Observable<T | boolean> {
+    // TODO: Remove the next line
     return of(true);
 
     /*return this.http
       .post<T>(`${this.apiServer}/${endPoint}`, body)
       .pipe(catchError((err => this.handleError(err))));*/
-  }
-
-  private handleError(err): Observable<any> {
-    console.log('Error occur while tried to make http request', err);
-    return of({status: false, message: err.message});
   }
 }

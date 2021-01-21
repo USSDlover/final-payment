@@ -2,25 +2,25 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PurchaseModel} from '../shared/models';
 import {PurchaseService} from './purchase.service';
-import {ToastService} from '../shared/services';
 import {Subscription} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'cs-purchase',
   templateUrl: './purchase.component.html',
-  styleUrls: ['./purchase.component.scss'],
-  providers: [PurchaseService]
+  styleUrls: ['./purchase.component.scss']
 })
 export class PurchaseComponent implements OnInit, OnDestroy {
   purchaseForm: FormGroup;
-  minDate = new Date();
   private _purchaseSub: Subscription;
 
   constructor(
-    private _cardService: PurchaseService,
-    private _toastService: ToastService
+    private _purchaseService: PurchaseService,
+    private _snackBarService: MatSnackBar
   ) {
   }
+
+  // region <Life Cycles>
 
   ngOnInit(): void {
     this._initForm();
@@ -31,6 +31,10 @@ export class PurchaseComponent implements OnInit, OnDestroy {
       this._purchaseSub.unsubscribe();
     }
   }
+
+  // endregion
+
+  // region <Form Actions>
 
   onSubmit(): boolean {
     const purchase = new PurchaseModel(
@@ -46,20 +50,31 @@ export class PurchaseComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  private _savePurchaseData(data: PurchaseModel): void {
+    this._purchaseSub = this._purchaseService.addNewCard(data)
+      .subscribe({
+        next: res => {
+          if (res) {
+            this._snackBarService.open('Purchase successfully done', 'X', {duration: 3000});
+          }
+        },
+        error: err => {
+          console.log('Got error while trying to save purchase data', err.message);
+          this._snackBarService.open('Something went wrong, please try again', 'X', {duration: 3000});
+        },
+        complete: () => {}
+      });
+  }
+
+  // endregion
+
+  // region <Initializing and validating form>
+
   validateSelectedDate(selectedDate: string): void {
     const date = new Date(selectedDate);
     if (date.getDate() <= new Date().getDate()) {
       this.expirationDate.setErrors([{badDate: {value: selectedDate}}]);
     }
-  }
-
-  private _savePurchaseData(data: PurchaseModel): void {
-    this._purchaseSub = this._cardService.addNewCard(data)
-      .subscribe(res => {
-        if (res) {
-          this._toastService.open('Purchase successfully done', 3000);
-        }
-      });
   }
 
   private _initForm(): void {
@@ -75,8 +90,7 @@ export class PurchaseComponent implements OnInit, OnDestroy {
         Validators.minLength(6)
       ]),
       expirationDate: new FormControl(null, [
-        Validators.required,
-        Validators.min(this.minDate.getDate())]),
+        Validators.required]),
       ccv: new FormControl(null, [
         Validators.minLength(3),
         Validators.maxLength(3),
@@ -109,5 +123,7 @@ export class PurchaseComponent implements OnInit, OnDestroy {
   get amount(): FormControl {
     return this.purchaseForm.get('amount') as FormControl;
   }
+
+  // endregion
 
 }

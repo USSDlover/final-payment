@@ -1,6 +1,6 @@
 {
   "name": "final-payment",
-  "version": "0.8.28",
+  "version": "0.8.32",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
