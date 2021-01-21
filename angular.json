@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "card-store": {
+    "final-payment": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/card-store",
+            "outputPath": "dist/final-payment",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "card-store:build"
+            "browserTarget": "final-payment:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "card-store:build:production"
+              "browserTarget": "final-payment:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "card-store:build"
+            "browserTarget": "final-payment:build"
           }
         },
         "test": {
@@ -115,16 +115,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "card-store:serve"
+            "devServerTarget": "final-payment:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "card-store:serve:production"
+              "devServerTarget": "final-payment:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "card-store"
+  "defaultProject": "final-payment"
 }
