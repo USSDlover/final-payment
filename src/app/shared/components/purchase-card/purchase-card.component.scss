@@ -1,0 +1,12 @@
+mat-card {
+  -webkit-animation: slide-in 250ms ease-in;
+  -o-animation: slide-in 250ms ease-in;
+  animation: slide-in 250ms ease-in;
+
+  transform-origin: top;
+}
+
+@keyframes slide-in {
+  0% { transform: scaleY(0) }
+  100% { transform: scaleY(1) }
+}

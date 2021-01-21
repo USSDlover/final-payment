@@ -2,7 +2,7 @@
   <button mat-flat-button color="primary" routerLink="/purchase">{{btnTxt}}</button>
 </mat-toolbar>
 
-<div *ngFor="let purchase of purchases$ | async">
+<div class="purchase-card" *ngFor="let purchase of purchases$ | async">
   <fp-purchase-card [purchase]="purchase">
   </fp-purchase-card>
 </div>
